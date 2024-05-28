@@ -107,6 +107,11 @@ impl Default for Board {
 }
 
 impl Board {
+
+    pub fn save_to_file(){
+
+    }
+
     pub fn new(
         board: [[Option<(PieceType, PieceColor)>; 8]; 8],
         player_turn: PieceColor,
@@ -795,7 +800,10 @@ impl Board {
             .border_type(BorderType::Rounded)
             .padding(Padding::new(5, 10, 1, 2));
 
+
+
         let mut lines: Vec<Line> = vec![];
+
 
         for i in (0..self.move_history.len()).step_by(2) {
             let piece_type_from = self.move_history[i].piece_type;

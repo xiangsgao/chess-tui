@@ -157,6 +157,13 @@ pub struct PieceMove {
     pub to_y: i8,
 }
 
+impl PieceType{
+    pub fn san(&self) -> &str{
+
+        "test test test"
+    }
+}
+
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum PieceColor {
     Black,

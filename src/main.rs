@@ -26,6 +26,7 @@ fn main() -> AppResult<()> {
 
     let config_path = dirs::home_dir().unwrap().join(".chess-tui");
 
+
     if !args.engine_path.is_empty() {
         if !config_path.exists() {
             File::create(&config_path)?;
@@ -37,6 +38,7 @@ fn main() -> AppResult<()> {
 
     // Create an application.
     let mut app = App::default();
+
 
     // We store the chess engine path if there is one
     if let Ok(content) = fs::read_to_string(config_path) {
