@@ -18,6 +18,18 @@ pub enum PieceType {
 }
 
 impl PieceType {
+
+    pub fn san(&self) -> &str{
+        match self {
+            PieceType::Pawn => "",
+            PieceType::Rook => "R",
+            PieceType::Bishop => "B",
+            PieceType::Queen => "Q",
+            PieceType::King => "K",
+            PieceType::Knight => "N"
+        }
+    }
+
     pub fn authorized_positions(
         self,
         coordinates: [i8; 2],
@@ -149,18 +161,40 @@ impl PieceType {
 }
 
 #[derive(Debug, Copy, Clone, PartialEq)]
+enum Castling{
+    Kingside,
+    Queenside
+}
+
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct PieceMove {
     pub piece_type: PieceType,
     pub from_x: i8,
     pub from_y: i8,
     pub to_x: i8,
     pub to_y: i8,
+    pub is_capture: bool,
+    pub is_checking_move: bool,
+    pub is_check_mating_move: bool,
+    pub castling: Option<Castling>,
+    pub promotion: Option<PieceType>
 }
 
-impl PieceType{
-    pub fn san(&self) -> &str{
+impl Default for PieceMove{
+    fn default() -> Self {
+        PieceMove{
+            piece_type: PieceType::Pawn,
+            from_x: -1,
+            from_y: -1,
+            to_x: -1,
+            to_y: -1,
+            is_capture: false,
+            is_checking_move: false,
+            is_check_mating_move: false,
+            castling: None,
+            promotion: None
 
-        "test test test"
+        }
     }
 }
 

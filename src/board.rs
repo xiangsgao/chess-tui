@@ -517,6 +517,16 @@ impl Board {
             None => return,
         };
 
+        let mut new_piece_move = PieceMove {
+            piece_type: piece_type_from,
+            from_y: from[0] as i8,
+            from_x: from[1] as i8,
+            to_y: to[0] as i8,
+            to_x: to[1] as i8,
+            ..Default::default()
+        };
+
+
         // We increment the consecutive_non_pawn_or_capture if the piece type is a pawn or if there is no capture
         match (piece_type_from, piece_type_to) {
             (PieceType::Pawn, _) | (_, Some(_)) => {
@@ -581,13 +591,7 @@ impl Board {
         self.board[from[0]][from[1]] = None;
 
         // We store it in the history
-        self.move_history.push(PieceMove {
-            piece_type: piece_type_from,
-            from_y: from[0] as i8,
-            from_x: from[1] as i8,
-            to_y: to[0] as i8,
-            to_x: to[1] as i8,
-        });
+        self.move_history.push(new_piece_move);
     }
 
     // Method to get the number of authorized positions for the current player (used for the end condition)
@@ -1382,6 +1386,7 @@ mod tests {
                     from_x: 3,
                     to_y: 6,
                     to_x: 3,
+                    ..Default::default()
                 }),
             ],
         );
@@ -1437,6 +1442,7 @@ mod tests {
                     from_x: 4,
                     to_y: 0,
                     to_x: 4,
+                    ..Default::default()
                 }),
             ],
         );
@@ -1548,6 +1554,7 @@ mod tests {
                     from_x: 4,
                     to_y: 7,
                     to_x: 4,
+                    ..Default::default()
                 }),
             ],
         );
@@ -1679,6 +1686,7 @@ mod tests {
                     from_x: 2,
                     to_y: 0,
                     to_x: 1,
+                    ..Default::default()
                 }),
                 (PieceMove {
                     piece_type: PieceType::King,
@@ -1686,6 +1694,7 @@ mod tests {
                     from_x: 6,
                     to_y: 0,
                     to_x: 5,
+                    ..Default::default()
                 }),
                 (PieceMove {
                     piece_type: PieceType::King,
@@ -1693,6 +1702,7 @@ mod tests {
                     from_x: 1,
                     to_y: 0,
                     to_x: 2,
+                    ..Default::default()
                 }),
                 (PieceMove {
                     piece_type: PieceType::King,
@@ -1700,6 +1710,7 @@ mod tests {
                     from_x: 5,
                     to_y: 0,
                     to_x: 6,
+                    ..Default::default()
                 }),
                 (PieceMove {
                     piece_type: PieceType::King,
@@ -1707,6 +1718,7 @@ mod tests {
                     from_x: 2,
                     to_y: 0,
                     to_x: 1,
+                    ..Default::default()
                 }),
                 (PieceMove {
                     piece_type: PieceType::King,
@@ -1714,6 +1726,7 @@ mod tests {
                     from_x: 6,
                     to_y: 0,
                     to_x: 5,
+                    ..Default::default()
                 }),
                 (PieceMove {
                     piece_type: PieceType::King,
@@ -1721,6 +1734,7 @@ mod tests {
                     from_x: 1,
                     to_y: 0,
                     to_x: 2,
+                    ..Default::default()
                 }),
                 (PieceMove {
                     piece_type: PieceType::King,
@@ -1728,6 +1742,7 @@ mod tests {
                     from_x: 5,
                     to_y: 0,
                     to_x: 6,
+                    ..Default::default()
                 }),
             ],
         );
@@ -1826,6 +1841,7 @@ mod tests {
                     from_x: 2,
                     to_y: 4,
                     to_x: 2,
+                    ..Default::default()
                 }),
             ],
         );
