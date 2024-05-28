@@ -1,6 +1,6 @@
 use crate::{
-    board::{Board, DisplayMode},
-    constants::UNDEFINED_POSITION,
+    board::Board,
+    constants::{DisplayMode, UNDEFINED_POSITION},
     pieces::{PieceColor, PieceMove, PieceType},
 };
 use ratatui::{
@@ -167,7 +167,7 @@ pub fn get_int_from_char(ch: Option<char>) -> i8 {
 
 pub fn get_latest_move(move_history: &[PieceMove]) -> Option<PieceMove> {
     if !move_history.is_empty() {
-        return Some(move_history[move_history.len() - 1].clone());
+        return Some(move_history[move_history.len() - 1]);
     }
     None
 }
